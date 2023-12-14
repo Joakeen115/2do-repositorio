@@ -36,6 +36,33 @@ console.log("Fondos insuficientes, es usted un rata")
 function suma(a, b) {
     return a + b;
 }
-const ResultadoSuma = suma(525, 626)
+const ResultadoSuma = suma(15, 30)
 console.log(ResultadoSuma);
 
+let total = 0 
+for (let i = 1; i <= 10; i++) {
+    total += i
+}
+console.log(total);
+
+
+//Acá voy a simular un "Gestor de bibloteca"
+
+//Acá tengo un array con 9 libros
+    const biblioteca = [ 
+        {titulo: "1984", autor: "George Orwell"},
+        {titulo: "Orgullo y prejuicio", autor: "Jane Austen"},
+        {titulo: "El Alquimista", autor: "Paulo Coelho"},
+        {titulo: "Matar a un ruiseñor", autor: "Harper Lee"},
+        {titulo: "Crimen y Castigo", autor: "Fyodor Dosstoevsky"},
+        {titulo: "El código Da Vinci", autor: "Dan Brown"},
+        {titulo: "Los Juegos del Hambre", autor: "El nombre del viento"}, 
+        {titulo: "La sombra del viento", autor: "Carlos Ruiz Zafón"}
+    ]
+//Acá estoy agregando un libro más
+    biblioteca.push("Sapiens: De animales a dioses")
+    console.log(biblioteca.length);
+    console.log(biblioteca)
+    
+    const EncontrarLibro = biblioteca.find((nombre) => nombre.titulo === "Orgullo y prejuicio")
+    console.log(EncontrarLibro)

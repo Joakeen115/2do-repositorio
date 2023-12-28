@@ -1,68 +1,49 @@
-/* 
-==      igualdad
-===     igualdad estricta
->       mayor
-<       menor
->=      mayor o igual
-<=      menor o igual
-!=      diferencte 
-!==     estrictamente diferente
-*/
 
+function AgregarLibro() {
+    const formulario = document.getElementById('MiFormulario');
+    const listaLibros = document.getElementById('listaLibros');
 
+    formulario.addEventListener('submit', function(event) {
+        event.preventDefault(); 
 
+      // Acá obtengo los valores 
+        const titulo = document.getElementById('titulo').value;
+        const autor = document.getElementById('autor').value;
+        const anio = document.getElementById('anio').value;
+        const editorial = document.getElementById('editorial').value;
 
-// Esto es solamente el saludo al usuario 
-const saludo = prompt("Ingrese su nombre");
-alert("Hola " + saludo + " :D" )
+      // Guardo los datos del libro
+        const nuevoLibro = { titulo, autor, anio, editorial };
 
+      // Obtengo la lista de los libros guardados en el storage
+        let librosGuardados = JSON.parse(localStorage.getItem('biblioteca')) || [];
 
-//Esto es la calculadora de impuestos
-let PrecioServicio = prompt("Ingrese precio para sumar 65% de impuestos");
-let resultado = 0.65 * Number(PrecioServicio) + Number(PrecioServicio);
-console.log(PrecioServicio + " con impuestos son: " + resultado);
+      // Acá agrego el libro ingresado
+        librosGuardados.push(nuevoLibro);
 
-let Efectivo = prompt("Su compra vale 10000 ingrese cuánto abona en efectivo");
+      // Esto me guarda la lista de libros
+        localStorage.setItem('biblioteca', JSON.stringify(librosGuardados));
 
-if (Efectivo >= 10000 ){
-    console.log("Su compra se ha realizado con éxito, que capo que es usted");
+      // Y esta función muestra los libros
+        mostrarLibrosEnHTML();
 
-}
-else{
-console.log("Fondos insuficientes, es usted un rata")
+    });
 }
 
-// Esto es una mera suma
-function suma(a, b) {
-    return a + b;
+  // Ésta es la función para mostrar los libros guardados
+    function mostrarLibrosEnHTML() {
+    const listaLibros = document.getElementById('listaLibros');
+    listaLibros.innerHTML = ''; 
+
+    // Acá obtengo la lista de libros guardados en localStorage
+    const librosGuardados = JSON.parse(localStorage.getItem('biblioteca')) || [];
+    librosGuardados.forEach(libro => {
+        const li = document.createElement('li');
+        li.textContent = `Título: ${libro.titulo}, Autor: ${libro.autor}, Año: ${libro.anio}, Editorial: ${libro.editorial}`;
+        listaLibros.appendChild(li);
+    });
 }
-const ResultadoSuma = suma(15, 30)
-console.log(ResultadoSuma);
 
-let total = 0 
-for (let i = 1; i <= 10; i++) {
-    total += i
-}
-console.log(total);
-
-
-//Acá voy a simular un "Gestor de bibloteca"
-
-//Acá tengo un array con 9 libros
-    const biblioteca = [ 
-        {titulo: "1984", autor: "George Orwell"},
-        {titulo: "Orgullo y prejuicio", autor: "Jane Austen"},
-        {titulo: "El Alquimista", autor: "Paulo Coelho"},
-        {titulo: "Matar a un ruiseñor", autor: "Harper Lee"},
-        {titulo: "Crimen y Castigo", autor: "Fyodor Dosstoevsky"},
-        {titulo: "El código Da Vinci", autor: "Dan Brown"},
-        {titulo: "Los Juegos del Hambre", autor: "El nombre del viento"}, 
-        {titulo: "La sombra del viento", autor: "Carlos Ruiz Zafón"}
-    ]
-//Acá estoy agregando un libro más
-    biblioteca.push("Sapiens: De animales a dioses")
-    console.log(biblioteca.length);
-    console.log(biblioteca)
-    
-    const EncontrarLibro = biblioteca.find((nombre) => nombre.titulo === "Orgullo y prejuicio")
-    console.log(EncontrarLibro)
+  // Acá estoy llamando a la función para que se muestren los libros que ponga el usuario
+  AgregarLibro();
+  mostrarLibrosEnHTML();

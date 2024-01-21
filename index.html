@@ -7,12 +7,14 @@
     <title>Document</title>
     <!-- CS -->
     <link rel="stylesheet" href="styles/styles.css">
+    <!-- BS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1 id="RegistarLibro">Regístre su libro</h1>
+    <h1 id="RegistarLibro" class="">Regístre su libro</h1>
         <section>
-            <form id="MiFormulario">
+            <form id="MiFormulario" class="popup-mensaje">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo">
                 <br><br>
@@ -27,14 +29,27 @@
                 <br><br>
                 <input type="submit" value="Registrar libro">
             </form>
-
-                <div id="librosGuardados">
+            <button id="removerListaBtn">Remover Lista</button>
+                <div id="listaLibros">
                     <h2>Libros Guardados:</h2>
                         <ul id="listaLibros"></ul>
                 </div>
+                <button id="btn" >a</button>
         </section>
+
+        <h4>¿Desea ver la lista de libros completa?</h4>
+        <button id="mostrarListaBtn">Mostrar lista</button>
+        <button id="removerLibrosBtn">Borrar lista de libros</button>
+        
+        <div id="mostrarListaLibros">
+
+        </div>
+
+      
     
     <!-- JS -->
     <script src="js/main.js" ></script>
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
